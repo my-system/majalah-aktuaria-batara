@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satu Data Sigi — Rancangan Aktualisasi 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════
+   VARIABEL WARNA — edit di sini
+   jika ingin ganti tema warna
+═══════════════════════════════ */
+:root {
+  --bg:        #04090F;
+  --bg2:       #081422;
+  --bg3:       #0D1F33;
+  --card:      #0F1D2C;
+  --card2:     #152538;
+  --border:    #1C3048;
+  --border2:   #243C57;
+  --cyan:      #00C2FF;
+  --cyan2:     #00E5FF;
+  --teal:      #00B89C;
+  --accent:    #FF6B2B;
+  --gold:      #F5A623;
+  --green:     #00D68F;
+  --red:       #FF4757;
+  --text:      #E8F4FF;
+  --text2:     #7FA8CC;
+  --text3:     #4A7090;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Grid pattern background */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,194,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,194,255,.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none; z-index: 0;
+}
+
+/* ─── NAVIGASI ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 56px;
+  background: rgba(4,9,15,.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px; letter-spacing: .2em;
+  color: var(--cyan); text-transform: uppercase;
+}
+.nav-brand span { color: var(--text2); }
+.nav-menu { display: flex; gap: 28px; }
+.nav-menu a {
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: .18em; color: var(--text2);
+  text-decoration: none; text-transform: uppercase;
+  transition: color .15s;
+}
+.nav-menu a:hover { color: var(--cyan); }
+
+/* ─── WRAPPER ─── */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 1; }
+
+/* ─── UTILS ─── */
+.tag {
+  display: inline-block;
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: .2em; text-transform: uppercase;
+  padding: 4px 12px; font-weight: 700;
+}
+.tag-cyan { background: var(--cyan); color: #020F1A; }
+.tag-teal { background: var(--teal); color: #020F1A; }
+.tag-accent { background: var(--accent); color: #fff; }
+.tag-gold { background: var(--gold); color: #020F1A; }
+.tag-green { background: var(--green); color: #020F1A; }
+.tag-border { border: 1px solid var(--border2); color: var(--text2); background: transparent; }
+
+.sec-head {
+  display: flex; align-items: center; gap: 20px;
+  margin-bottom: 48px;
+}
+.sec-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(26px,3.5vw,44px);
+  letter-spacing: .07em; color: var(--text);
+  white-space: nowrap;
+}
+.sec-line { flex: 1; height: 1px; background: var(--border); }
+
+/* ─── FOTO PLACEHOLDER ─── */
+.photo-box {
+  background: var(--card);
+  border: 1.5px dashed var(--border2);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; padding: 32px 16px;
+  position: relative; overflow: hidden;
+}
+.photo-box img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  position: absolute; inset: 0;
+}
+.photo-box .ph-label {
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--text3); text-align: center; line-height: 1.6;
+  position: relative; z-index: 1;
+  background: rgba(4,9,15,.7);
+  padding: 4px 8px;
+}
+.photo-box .ph-icon {
+  width: 28px; height: 28px; opacity: .2;
+  position: relative; z-index: 1;
+}
+
+/* ─── CARD ─── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 28px; position: relative; overflow: hidden;
+}
+.card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+}
+.card.c-cyan::before { background: linear-gradient(90deg, var(--cyan), transparent); }
+.card.c-teal::before { background: linear-gradient(90deg, var(--teal), transparent); }
+.card.c-accent::before { background: linear-gradient(90deg, var(--accent), transparent); }
+.card.c-gold::before { background: linear-gradient(90deg, var(--gold), transparent); }
+.card.c-green::before { background: linear-gradient(90deg, var(--green), transparent); }
+.card.c-multi::before { background: linear-gradient(90deg, var(--cyan), var(--teal), var(--accent), transparent); }
+
+.card-num {
+  font-family: 'Space Mono', monospace; font-size: 10px;
+  letter-spacing: .15em; color: var(--cyan);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.card-num::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.card-title { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
+.card-body { font-size: 13px; color: var(--text2); line-height: 1.75; }
+
+/* ─── SECTION ─── */
+section { padding: 96px 0; position: relative; }
+section + section { border-top: 1px solid rgba(0,194,255,.06); }
+
+
+/* ════════════════════════════════════════
+   COVER
+════════════════════════════════════════ */
+#cover {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 420px;
+  gap: 0; position: relative;
+}
+.cover-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 64px 80px 48px; position: relative;
+}
+.cover-right {
+  position: relative; overflow: hidden;
+  background: var(--card);
+  border-left: 1px solid var(--border);
+}
+.cover-bg-num {
+  position: absolute; right: 48px; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Bebas Neue', sans-serif; font-size: 280px;
+  color: transparent; -webkit-text-stroke: 1px rgba(0,194,255,.07);
+  user-select: none; line-height: 1; pointer-events: none;
+  letter-spacing: -8px;
+}
+
+.cover-eyebrow {
+  font-family: 'Space Mono', monospace; font-size: 10px;
+  letter-spacing: .28em; color: var(--cyan); text-transform: uppercase;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 32px;
+}
+.cover-eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--cyan); }
+
+.cover-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 5.5vw, 80px);
+  line-height: .92; letter-spacing: .04em; margin-bottom: 28px;
+}
+.cover-title .t1 { color: var(--text); display: block; }
+.cover-title .t2 { color: var(--cyan); display: block; }
+.cover-title .t3 { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.3); display: block; }
+
+.cover-desc {
+  font-size: 14px; color: var(--text2); max-width: 480px;
+  line-height: 1.85; margin-bottom: 40px;
+}
+
+.cover-meta-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--border); border: 1px solid var(--border);
+  max-width: 480px;
+}
+.cover-meta-cell {
+  background: var(--card); padding: 14px 18px;
+}
+.cmc-label {
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: .18em; color: var(--text3); text-transform: uppercase;
+  display: block; margin-bottom: 4px;
+}
+.cmc-val { font-size: 13px; font-weight: 600; color: var(--text); }
+
+/* FOTO PROFIL di cover */
+.cover-photo {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+}
+.cover-photo-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 28px 24px 24px;
+  background: linear-gradient(to top, rgba(4,9,15,.95) 60%, transparent);
+}
+.cover-photo-name {
+  font-family: 'Bebas Neue', sans-serif; font-size: 20px;
+  letter-spacing: .08em; color: var(--text);
+}
+.cover-photo-title {
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: .15em; color: var(--cyan); margin-top: 4px;
+  text-transform: uppercase;
+}
+
+.cover-bar {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--teal), var(--accent), transparent);
+}
+
+
+/* ════════════════════════════════════════
+   LATAR BELAKANG
+════════════════════════════════════════ */
+.lb-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: start; }
+
+.lb-main {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 40px; position: relative;
+}
+.lb-main::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--teal), transparent);
+}
+.lb-main p { font-size: 14px; color: var(--text2); line-height: 1.9; }
+.lb-main p strong { color: var(--cyan); font-weight: 600; }
+
+.lb-right { display: flex; flex-direction: column; gap: 16px; }
+
+.reg-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.reg-badge {
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: .08em; border: 1px solid rgba(0,194,255,.25);
+  color: var(--cyan); padding: 5px 12px;
+}
+
+.stat-strip {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); margin-top: 40px;
+}
+.stat-cell {
+  background: var(--card); padding: 28px 20px; text-align: center;
+}
+.stat-val {
+  font-family: 'Bebas Neue', sans-serif; font-size: 48px;
+  color: var(--cyan); line-height: 1; display: block; margin-bottom: 6px;
+}
+.stat-lbl { font-size: 11px; color: var(--text2); line-height: 1.4; }
+
+
+/* ════════════════════════════════════════
+   PROFIL
+════════════════════════════════════════ */
+.profil-layout { display: grid; grid-template-columns: 340px 1fr; gap: 32px; }
+
+.profil-instansi { display: flex; flex-direction: column; gap: 16px; }
+.inst-card { background: var(--card); border: 1px solid var(--border); padding: 28px; }
+.inst-logo-box {
+  width: 64px; height: 64px; border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; margin-bottom: 16px;
+}
+.inst-name {
+  font-family: 'Bebas Neue', sans-serif; font-size: 18px;
+  letter-spacing: .06em; color: var(--text); margin-bottom: 4px;
+}
+.inst-sub { font-size: 12px; color: var(--text2); line-height: 1.5; margin-bottom: 20px; }
+.inst-row {
+  display: flex; justify-content: space-between; align-items: start;
+  padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.inst-row:last-child { border-bottom: none; }
+.ir-label { font-size: 11px; color: var(--text3); }
+.ir-val { font-size: 12px; color: var(--text); font-weight: 500; text-align: right; max-width: 55%; }
+
+.peserta-side {}
+.peserta-card {
+  background: var(--card); border: 1px solid var(--border);
+  overflow: hidden; margin-bottom: 16px;
+}
+.peserta-photo-area {
+  height: 280px; position: relative; background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+}
+.peserta-photo-area img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.peserta-photo-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 24px 20px 20px;
+  background: linear-gradient(to top, rgba(4,9,15,.95) 60%, transparent);
+}
+.peserta-name { font-weight: 700; font-size: 16px; color: var(--text); }
+.peserta-title { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--cyan); letter-spacing: .15em; margin-top: 4px; text-transform: uppercase; }
+.peserta-body-card { background: var(--card); border: 1px solid var(--border); padding: 24px; }
+.peserta-bio { font-size: 13px; color: var(--text2); line-height: 1.8; margin-bottom: 20px; }
+
+.nilai-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+.nilai-chip {
+  font-size: 11px; color: var(--text2); padding: 4px 12px;
+  background: var(--card2); border: 1px solid var(--border2);
+}
+.nilai-chip strong { color: var(--cyan); }
+
+
+/* ════════════════════════════════════════
+   ISU
+════════════════════════════════════════ */
+.isu-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 40px; }
+.isu-card { background: var(--card); border: 1px solid var(--border); padding: 28px; position: relative; }
+.isu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+.isu-card.r1::before { background: var(--accent); }
+.isu-card.r2::before { background: var(--gold); }
+.isu-card.r3::before { background: var(--teal); }
+
+.isu-rank {
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: .18em; text-transform: uppercase;
+  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.isu-card.r1 .isu-rank { color: var(--accent); }
+.isu-card.r2 .isu-rank { color: var(--gold); }
+.isu-card.r3 .isu-rank { color: var(--teal); }
+.isu-rank::after { content: ''; flex: 1; height: 1px; opacity: .3; background: currentColor; }
+.isu-title { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 10px; line-height: 1.4; }
+.isu-body { font-size: 12.5px; color: var(--text2); line-height: 1.7; }
+.isu-tag {
+  margin-top: 12px; padding: 8px 14px;
+  border-left: 2px solid; font-size: 12px; color: var(--text2);
+  background: rgba(255,255,255,.03);
+}
+.isu-card.r1 .isu-tag { border-color: var(--accent); }
+.isu-card.r2 .isu-tag { border-color: var(--gold); }
+.isu-card.r3 .isu-tag { border-color: var(--teal); }
+
+.apkl-table { width: 100%; border-collapse: collapse; }
+.apkl-table th {
+  background: var(--card2); border-bottom: 1px solid var(--border2);
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: .15em; color: var(--text2); padding: 12px 16px;
+  text-align: left; text-transform: uppercase;
+}
+.apkl-table td { padding: 13px 16px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,.04); vertical-align: top; }
+.apkl-table tr:last-child td { border-bottom: none; }
+.apkl-table .sc { font-family: 'Space Mono', monospace; font-weight: 700; text-align: center; }
+.sc-top { color: var(--cyan); }
+.sc-lo { color: var(--text3); }
+.rank-pip {
+  display: inline-block; font-family: 'Space Mono', monospace;
+  font-size: 10px; font-weight: 700; padding: 2px 10px;
+}
+.rp1 { background: var(--cyan); color: #020F1A; }
+.rp2, .rp3 { background: var(--card2); color: var(--text2); }
+
+
+/* ════════════════════════════════════════
+   CORE ISU
+════════════════════════════════════════ */
+.core-box {
+  background: var(--card); border: 1px solid rgba(0,194,255,.3);
+  padding: 48px; position: relative; margin-bottom: 40px;
+}
+.core-box::before {
+  content: 'CORE ISU'; font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: .2em;
+  background: var(--cyan); color: #020F1A;
+  padding: 4px 12px; font-weight: 700;
+  position: absolute; top: -1px; left: 48px;
+}
+.core-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(18px,2.5vw,30px);
+  letter-spacing: .05em; color: var(--text); line-height: 1.3;
+}
+.core-text span { color: var(--cyan); }
+
+.fishbone-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
+.fb-card { background: var(--card); border: 1px solid var(--border); padding: 20px; }
+.fb-label {
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.fb-label::before { content: '▸'; font-size: 8px; }
+.fb-body { font-size: 12.5px; color: var(--text2); line-height: 1.65; }
+
+.usg-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 32px; }
+.usg-card { background: var(--card); border: 1px solid var(--border); padding: 28px; text-align: center; }
+.usg-val { font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1; margin-bottom: 8px; }
+.usg-label { font-size: 12px; color: var(--text2); line-height: 1.4; }
+.usg-score { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--text3); margin-top: 8px; }
+
+
+/* ════════════════════════════════════════
+   GAGASAN
+════════════════════════════════════════ */
+.gagasan-hero {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 40px; align-items: center;
+  background: var(--card); border: 1px solid var(--border);
+  padding: 48px; margin-bottom: 28px; position: relative;
+}
+.gagasan-hero::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--teal), var(--accent), transparent);
+}
+.gagasan-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(20px,2.8vw,32px);
+  letter-spacing: .06em; color: var(--text); margin-bottom: 14px; line-height: 1.1;
+}
+.gagasan-body { font-size: 14px; color: var(--text2); line-height: 1.85; }
+.gagasan-icon {
+  width: 96px; height: 96px; flex-shrink: 0;
+  border: 1px solid rgba(0,194,255,.25);
+  display: flex; align-items: center; justify-content: center;
+}
+.gagasan-icon svg { width: 44px; height: 44px; stroke: var(--cyan); fill: none; stroke-width: 1.2; }
+
+.features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.feat-card { background: var(--card); border: 1px solid var(--border); padding: 26px; }
+.feat-icon {
+  width: 38px; height: 38px; border: 1px solid rgba(0,194,255,.2);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 14px;
+}
+.feat-icon svg { width: 16px; height: 16px; stroke: var(--cyan); fill: none; stroke-width: 1.5; }
+.feat-name { font-weight: 600; font-size: 13px; color: var(--text); margin-bottom: 8px; }
+.feat-body { font-size: 12px; color: var(--text2); line-height: 1.7; }
+
+
+/* ════════════════════════════════════════
+   PORTAL SHOWCASE
+════════════════════════════════════════ */
+.portal-band {
+  background: var(--bg2);
+  border-top: 1px solid rgba(0,194,255,.08);
+  border-bottom: 1px solid rgba(0,194,255,.08);
+  padding: 80px 0;
+}
+.portal-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; }
+.portal-url-row {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+}
+.portal-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--green); flex-shrink: 0;
+  box-shadow: 0 0 0 4px rgba(0,214,143,.12);
+  animation: pulse 2.2s infinite;
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 4px rgba(0,214,143,.12); }
+  50% { box-shadow: 0 0 0 8px rgba(0,214,143,.03); }
+}
+.portal-url-text {
+  font-family: 'Space Mono', monospace; font-weight: 700;
+  font-size: clamp(14px,1.6vw,18px); color: var(--cyan2);
+}
+.portal-desc { font-size: 14px; color: var(--text2); line-height: 1.85; margin-bottom: 24px; }
+.portal-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.portal-tag {
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: .08em; border: 1px solid rgba(0,194,255,.2);
+  color: var(--cyan); padding: 5px 12px;
+}
+
+/* Foto portal grid */
+.portal-photo-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+.portal-photo-grid .photo-box { height: 160px; }
+.portal-photo-grid .photo-box.wide { grid-column: span 2; height: 120px; }
+
+
+/* ════════════════════════════════════════
+   KEGIATAN
+════════════════════════════════════════ */
+.keg-list { display: flex; flex-direction: column; gap: 14px; }
+.keg-item {
+  display: grid; grid-template-columns: 52px 1fr;
+  background: var(--card); border: 1px solid var(--border); overflow: hidden;
+}
+.keg-num {
+  background: var(--card2); border-right: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; font-size: 26px;
+  color: var(--cyan); padding: 20px 12px;
+}
+.keg-content { padding: 22px 26px; }
+.keg-title { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 5px; }
+.keg-date {
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  color: var(--cyan); letter-spacing: .12em; margin-bottom: 10px;
+}
+.keg-body { font-size: 12.5px; color: var(--text2); line-height: 1.7; margin-bottom: 12px; }
+.keg-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.keg-chip {
+  font-size: 11px; color: var(--text2); padding: 3px 10px;
+  background: var(--card2); border: 1px solid var(--border2);
+}
+.keg-nilai { display: flex; flex-wrap: wrap; gap: 6px; }
+.nilai-tag {
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: .06em; border: 1px solid rgba(0,180,156,.25);
+  color: var(--teal); padding: 2px 8px;
+}
+
+/* Foto dokumentasi per kegiatan */
+.keg-docs { display: flex; gap: 8px; margin-top: 12px; }
+.keg-doc-photo { flex: 1; min-height: 90px; }
+
+/* Timeline Gantt */
+.gantt-wrap { overflow-x: auto; margin-top: 48px; }
+.gantt { min-width: 680px; border: 1px solid var(--border); }
+.gantt-header { display: grid; grid-template-columns: 200px 1fr; }
+.gantt-header-blank {
+  background: var(--card2); padding: 10px 16px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.gantt-months {
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.gantt-month {
+  background: var(--card2); border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: .18em; color: var(--cyan); text-transform: uppercase;
+  border-left: 1px solid var(--border);
+}
+.gantt-weeks-row { display: grid; grid-template-columns: 200px repeat(8,1fr); border-bottom: 1px solid var(--border); }
+.gantt-wlabel {
+  background: var(--card2); border-right: 1px solid var(--border);
+  padding: 6px 16px;
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  color: var(--text3); display: flex; align-items: center;
+}
+.gantt-week {
+  border-left: 1px solid var(--border2); padding: 6px 4px;
+  text-align: center;
+  font-family: 'Space Mono', monospace; font-size: 8px; color: var(--text3);
+}
+.gantt-row-wrap { display: grid; grid-template-columns: 200px repeat(8,1fr); border-bottom: 1px solid rgba(0,194,255,.05); }
+.gantt-row-wrap:last-child { border-bottom: none; }
+.gantt-row-label {
+  padding: 12px 16px; font-size: 12px; color: var(--text2);
+  border-right: 1px solid var(--border);
+  display: flex; align-items: center;
+}
+.gantt-col { border-left: 1px solid rgba(255,255,255,.03); }
+.gantt-bar-cell {
+  height: 36px; display: flex; align-items: center; padding: 4px 2px;
+}
+.gbar {
+  height: 24px; border-radius: 3px; width: 100%; opacity: .85;
+}
+.gbar.k1 { background: var(--cyan); }
+.gbar.k2 { background: var(--teal); }
+.gbar.k3 { background: #3E6ED4; }
+.gbar.k4 { background: var(--gold); }
+.gbar.k5 { background: var(--accent); }
+.gantt-empty { height: 36px; }
+
+
+/* ════════════════════════════════════════
+   DOKUMENTASI KEGIATAN (GALLERY)
+════════════════════════════════════════ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.gallery-item { position: relative; }
+.gallery-item .photo-box { height: 200px; }
+.gallery-item.tall .photo-box { height: 412px; }
+.gallery-item.wide { grid-column: span 2; }
+.gallery-item.wide .photo-box { height: 200px; }
+.gallery-caption {
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: .1em; color: var(--text3); text-transform: uppercase;
+  margin-top: 6px; padding: 0 4px;
+}
+
+
+/* ════════════════════════════════════════
+   KESIMPULAN & REKOM
+════════════════════════════════════════ */
+.ks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.ks-card { background: var(--card); border: 1px solid var(--border); padding: 26px; position: relative; }
+.ks-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--teal), transparent); }
+.ks-card.full { grid-column: span 2; }
+.ks-card.full::before { background: linear-gradient(90deg, var(--cyan), var(--teal), transparent); }
+.ks-num { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--teal); letter-spacing: .15em; margin-bottom: 10px; }
+.ks-title { font-weight: 600; font-size: 13px; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
+.ks-body { font-size: 12.5px; color: var(--text2); line-height: 1.75; }
+.ks-body a { color: var(--cyan2); text-decoration: none; }
+
+.rekom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 40px; }
+.rekom-box { background: var(--card); border: 1px solid var(--border); padding: 26px; }
+.rekom-header { display: flex; gap: 14px; align-items: center; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.rekom-ico { width: 38px; height: 38px; border: 1px solid rgba(0,194,255,.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.rekom-ico svg { width: 16px; height: 16px; stroke: var(--cyan); fill: none; stroke-width: 1.5; }
+.rekom-to { font-weight: 600; font-size: 13px; color: var(--text); line-height: 1.3; }
+.rekom-sub { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--cyan); letter-spacing: .1em; margin-top: 3px; text-transform: uppercase; }
+.rekom-ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.rekom-ul li { font-size: 12px; color: var(--text2); line-height: 1.65; padding-left: 18px; position: relative; }
+.rekom-ul li::before { content: '//'; font-family: 'Space Mono', monospace; font-size: 9px; color: var(--cyan); opacity: .6; position: absolute; left: 0; top: 2px; }
+
+.closing-box {
+  margin-top: 56px; padding: 48px;
+  background: var(--card); border: 1px solid var(--border); position: relative;
+}
+.closing-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--teal), var(--accent), transparent); }
+.closing-quote { font-family: 'Bebas Neue', sans-serif; font-size: clamp(18px,2.2vw,26px); letter-spacing: .05em; color: var(--text2); line-height: 1.4; margin-bottom: 16px; }
+.closing-quote span { color: var(--cyan); }
+.closing-body { font-size: 14px; color: var(--text2); line-height: 1.85; }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 28px 0; border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px; position: relative; z-index: 1;
+}
+.footer-l { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--text3); letter-spacing: .12em; text-transform: uppercase; }
+.footer-r { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--cyan); letter-spacing: .12em; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 780px) {
+  .wrap { padding: 0 20px; }
+  nav { padding: 0 20px; }
+  .nav-menu { display: none; }
+  #cover { grid-template-columns: 1fr; }
+  .cover-right { height: 340px; }
+  .cover-left { padding: 100px 24px 48px; }
+  .lb-layout, .profil-layout, .isu-grid, .features-grid,
+  .ks-grid, .rekom-grid, .portal-layout { grid-template-columns: 1fr; }
+  .ks-card.full { grid-column: span 1; }
+  .stat-strip { grid-template-columns: 1fr 1fr; }
+  .usg-row { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-item.tall .photo-box { height: 200px; }
+  .gallery-item.wide { grid-column: span 1; }
+  .portal-photo-grid { grid-template-columns: 1fr; }
+  .portal-photo-grid .photo-box.wide { grid-column: span 1; }
+  .cover-bg-num { display: none; }
+  .gagasan-hero { grid-template-columns: 1fr; }
+}
+@media print {
+  nav { display: none; }
+  .cover-bar { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!-- ║  NAVIGASI                            ║ -->
+<!-- ╚══════════════════════════════════════╝ -->
+<nav>
+  <div class="nav-brand">Satu<span>Data</span>Sigi</div>
+  <div class="nav-menu">
+    <a href="#latar">Latar Belakang</a>
+    <a href="#profil">Profil</a>
+    <a href="#isu">Identifikasi Isu</a>
+    <a href="#gagasan">Gagasan</a>
+    <a href="#portal">Portal</a>
+    <a href="#kegiatan">Kegiatan</a>
+    <a href="#dokumentasi">Dokumentasi</a>
+    <a href="#penutup">Penutup</a>
+  </div>
+</nav>
+
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!-- ║  COVER                               ║ -->
+<!-- ╚══════════════════════════════════════╝ -->
+<div id="cover">
+
+  <!-- KIRI — Teks -->
+  <div class="cover-left">
+    <div class="cover-bg-num">SDI</div>
+
+    <!-- EDIT: Keterangan di atas judul -->
+    <div class="cover-eyebrow">Rancangan Aktualisasi &nbsp;·&nbsp; CPNS Gol. III &nbsp;·&nbsp; 2026</div>
+
+    <!-- EDIT: Judul utama (3 baris) -->
+    <h1 class="cover-title">
+      <span class="t1">PEMBANGUNAN</span>
+      <span class="t2">PROTOTIPE PORTAL</span>
+      <span class="t3">'SATU DATA SIGI'</span>
+    </h1>
+
+    <!-- EDIT: Deskripsi singkat -->
+    <p class="cover-desc">
+      Sebagai Media Integrasi dan Diseminasi Data Sektoral untuk Mengoptimalisasi Peran E-Walidata pada Dinas Komunikasi dan Informatika Kabupaten Sigi
+    </p>
+
+    <!-- EDIT: Data identitas (isi sesuai biodata) -->
+    <div class="cover-meta-grid">
+      <div class="cover-meta-cell">
+        <span class="cmc-label">Nama</span>
+        <div class="cmc-val">Moh. Batara, S.Stat</div>
+      </div>
+      <div class="cover-meta-cell">
+        <span class="cmc-label">NIP</span>
+        <div class="cmc-val">199805122025061001</div>
+      </div>
+      <div class="cover-meta-cell">
+        <span class="cmc-label">Jabatan</span>
+        <div class="cmc-val">Statistisi Ahli Pertama</div>
+      </div>
+      <div class="cover-meta-cell">
+        <span class="cmc-label">Instansi</span>
+        <div class="cmc-val">Diskominfo Kab. Sigi</div>
+      </div>
+      <div class="cover-meta-cell">
+        <span class="cmc-label">Angkatan / Gelombang</span>
+        <div class="cmc-val">VIII / Gelombang I</div>
+      </div>
+      <div class="cover-meta-cell">
+        <span class="cmc-label">Tahun</span>
+        <div class="cmc-val">2026</div>
+      </div>
+    </div>
+    <div class="cover-bar"></div>
+  </div>
+
+  <!-- KANAN — Foto Profil -->
+  <div class="cover-right">
+    <!--
+      EDIT FOTO COVER:
+      1. Simpan foto Anda di folder yang sama dengan file HTML ini
+      2. Ganti "FOTO_COVER.jpg" dengan nama file foto Anda
+      3. Contoh: src="foto_batara.jpg"
+      Jika belum punya foto, biarkan bagian ini apa adanya (akan tampil placeholder)
+    -->
+    <div class="photo-box" style="width:100%;height:100%;">
+      <img src="FOTO_COVER.jpg" alt="Foto Profil" class="cover-photo">
+      <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <!-- <span class="ph-label">Foto cover Anda<br>simpan sbg FOTO_COVER.jpg<br>lalu hapus komentar di atas</span> -->
+    </div>
+
+    <!-- Overlay nama (tetap tampil di atas foto) -->
+    <div class="cover-photo-overlay">
+      <!-- EDIT: Nama dan jabatan di overlay foto -->
+      <div class="cover-photo-name">MOH. BATARA, S.STAT</div>
+      <div class="cover-photo-title">// Statistisi Ahli Pertama — Diskominfo Kab. Sigi</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!-- ║  BAB I — LATAR BELAKANG             ║ -->
+<!-- ╚══════════════════════════════════════╝ -->
+<section id="latar">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag tag-cyan">01</span>
+      <span class="sec-title">LATAR BELAKANG</span>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="lb-layout">
+      <!-- Narasi utama -->
+      <div class="lb-main">
+        <!-- EDIT: Paragraf latar belakang -->
+        <p>
+          Pemerintah Indonesia tengah melakukan <strong>transformasi digital masif</strong> melalui kebijakan <strong>Satu Data Indonesia (SDI)</strong> sebagaimana diamanatkan dalam Peraturan Presiden Nomor 39 Tahun 2019. Kebijakan ini bertujuan menciptakan tata kelola data pemerintah yang akurat, mutakhir, terpadu, dan dapat dipertanggungjawabkan, serta mudah diakses dan dibagipakaikan antar-instansi.
+        </p>
+        <br>
+        <p>
+          Namun di Kabupaten Sigi, kondisi faktual masih jauh dari ideal. Pengumpulan data sektoral didominasi metode konvensional — surat-menyurat manual dan penyimpanan awan (Google Drive) yang <strong>terfragmentasi</strong> di berbagai unit kerja — tanpa standar metadata yang seragam. Ketiadaan wadah digital terpusat mengakibatkan fungsi integrasi dan aksesibilitas data menjadi lemah, serta kebijakan pembangunan tidak dapat sepenuhnya berbasis data yang andal.
+        </p>
+        <!-- EDIT: Tambah/kurangi paragraf sesuai laporan -->
+
+        <div class="reg-badges">
+          <!-- EDIT: Dasar hukum/regulasi -->
+          <span class="reg-badge">Perpres No. 39 / 2019</span>
+          <span class="reg-badge">PermenpanRB No. 19 / 2020</span>
+          <span class="reg-badge">Perda Sigi No. 1 / 2020</span>
+          <span class="reg-badge">Perbup Sigi No. 22 / 2022</span>
+        </div>
+      </div>
+
+      <!-- 4 poin kanan -->
+      <div class="lb-right">
+        <!-- EDIT: 4 card poin latar belakang -->
+        <div class="card c-cyan">
+          <div class="card-num">01</div>
+          <div class="card-title">Kondisi Saat Ini</div>
+          <div class="card-body">Data sektoral tersebar di berbagai instansi dengan format beragam, tidak bermetadata, sulit divalidasi dan disinkronkan lintas OPD.</div>
+        </div>
+        <div class="card c-accent">
+          <div class="card-num">02</div>
+          <div class="card-title">Dampak yang Terjadi</div>
+          <div class="card-body">Duplikasi data, ketidaksinkronan antar-instansi, perencanaan tidak optimal, pimpinan tidak dapat memantau indikator secara real-time.</div>
+        </div>
+        <div class="card c-teal">
+          <div class="card-num">03</div>
+          <div class="card-title">Kondisi yang Diharapkan</div>
+          <div class="card-body">Tersedia portal digital terpusat dengan metadata standar, visualisasi interaktif, dan aksesibilitas publik yang tinggi dan berkelanjutan.</div>
+        </div>
+        <div class="card c-gold">
+          <div class="card-num">04</div>
+          <div class="card-title">Peran Statistisi</div>
+          <div class="card-body">Menjalankan fungsi vital E-Walidata: memastikan data sektoral memenuhi standar metadata sebelum disebarluaskan kepada pengguna data.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Angka statistik -->
+    <div class="stat-strip">
+      <!-- EDIT: Angka-angka kunci -->
+      <div class="stat-cell">
+        <span class="stat-val">2019</span>
+        <span class="stat-lbl">Perpres Satu Data Indonesia ditetapkan</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-val">30+</span>
+        <span class="stat-lbl">OPD sebagai Produsen Data di Kab. Sigi</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-val">0</span>
+        <span class="stat-lbl">Portal data terpadu sebelum aktualisasi</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-val">30</span>
+        <span class="stat-lbl">Hari kerja masa habituasi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!-- ║  BAB II — PROFIL INSTANSI & PESERTA ║ -->
+<!-- ╚══════════════════════════════════════╝ -->
+<section id="profil">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag tag-teal">02</span>
+      <span class="sec-title">PROFIL INSTANSI & PESERTA</span>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="profil-layout">
+
+      <!-- KIRI — Instansi -->
+      <div class="profil-instansi">
+        <div class="inst-card">
+          <div class="inst-logo-box">🏛</div>
+          <!-- EDIT: Nama instansi -->
+          <div class="inst-name">DISKOMINFO KAB. SIGI</div>
+          <div class="inst-sub">Dinas Komunikasi dan Informatika<br>Kabupaten Sigi, Sulawesi Tengah</div>
+          <!-- EDIT: Data instansi -->
+          <div class="inst-row"><span class="ir-label">Dasar Hukum</span><span class="ir-val">Perbup Sigi No. 22 / 2022</span></div>
+          <div class="inst-row"><span class="ir-label">Bidang</span><span class="ir-val">Komunikasi, Informatika, Persandian & Statistik</span></div>
+          <div class="inst-row"><span class="ir-label">Fungsi E-Walidata</span><span class="ir-val">Verifikasi & Validasi Data Sektoral OPD</span></div>
+          <div class="inst-row"><span class="ir-label">Unit Teknis</span><span class="ir-val">Seksi Persandian & Statistik</span></div>
+          <div class="inst-row"><span class="ir-label">Portal Data</span><span class="ir-val" style="color:var(--cyan)">data.sigikab.go.id</span></div>
+          <div class="inst-row"><span class="ir-label">Mentor</span><span class="ir-val">Andi Nurpaida, S.Sos., MM</span></div>
+          <div class="inst-row"><span class="ir-label">Coach</span><span class="ir-val">Risal Num Arif Rivan, S.IP., M.Si</span></div>
+        </div>
+
+        <!-- EDIT: Visi/Misi singkat -->
+        <div class="card c-cyan" style="padding:22px 28px;">
+          <div class="card-title" style="margin-bottom:8px;">Visi & Misi</div>
+          <div class="card-body">Mendukung penyelenggaraan pemerintahan yang transparan, akuntabel, dan berbasis teknologi informasi sesuai RPJMD Kabupaten Sigi 2025–2029.</div>
+        </div>
+      </div>
+
+      <!-- KANAN — Peserta -->
+      <div class="peserta-side">
+        <div class="peserta-card">
+          <div class="peserta-photo-area">
+            
+              <!-- EDIT FOTO PROFIL:
+              Simpan foto Anda, ganti "FOTO_PROFIL.jpg" -->
+           
+            <div class="photo-box" style="height:100%;">
+              <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <img src="FOTO_PROFIL.jpg" alt="Moh. Batara">
+            </div>
+            <div class="peserta-photo-overlay">
+              <!-- EDIT: Nama dan jabatan -->
+              <div class="peserta-name">Moh. Batara, S.Stat</div>
+              <div class="peserta-title">// Statistisi Ahli Pertama · Penata Muda (III/a)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="peserta-body-card">
+          <!-- EDIT: Biografi singkat -->
+          <p class="peserta-bio">
+            Lahir di Tampaure, 26 Juni 2001. Lulusan S1 Statistika. Bertugas di Bidang Pengelolaan Informasi, Komunikasi Publik dan Persandian — Seksi Persandian & Statistik, Diskominfo Kabupaten Sigi. Bertanggung jawab dalam pengelolaan statistik sektoral, pengelolaan metadata, integrasi data, serta penguatan kapasitas informasi daerah untuk mendukung kebijakan pembangunan berbasis data.
+          </p>
+          <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;">Nilai BerAKHLAK</div>
+          <div class="nilai-wrap">
+            <span class="nilai-chip"><strong>B</strong>erorientasi Pelayanan</span>
+            <span class="nilai-chip"><strong>A</strong>kuntabel</span>
+            <span class="nilai-chip"><strong>K</strong>ompeten</span>
+            <span class="nilai-chip"><strong>H</strong>armonis</span>
+            <span class="nilai-chip"><strong>L</strong>oyal</span>
+            <span class="nilai-chip"><strong>A</strong>daptif</span>
+            <span class="nilai-chip"><strong>K</strong>olaboratif</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!-- ║  BAB III — IDENTIFIKASI ISU         ║ -->
+<!-- ╚══════════════════════════════════════╝ -->
+<section id="isu">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag tag-accent">03</span>
+      <span class="sec-title">IDENTIFIKASI ISU</span>
+      <div class="sec-line"></div>
+    </div>
+
+    <!-- 3 kartu isu -->
+    <div class="isu-grid">
+      <!-- EDIT: ISU 1 -->
+      <div class="isu-card r1">
+        <div class="isu-rank">ISU 01 · Prioritas Utama</div>
+        <div class="isu-title">Belum Optimalnya Integrasi & Aksesibilitas Data Sektoral Melalui Portal Satu Data Sigi</div>
+        <div class="isu-body">Data sektoral masih parsial dan tidak terpusat. Pengumpulan dominan manual dan Google Drive tanpa standar seragam. Format beragam, tidak bermetadata, sulit divalidasi.</div>
+        <div class="isu-tag">→ Duplikasi data, ketidaksinkronan antar-instansi, kebijakan tidak tepat sasaran.</div>
+      </div>
+      <!-- EDIT: ISU 2 -->
+      <div class="isu-card r2">
+        <div class="isu-rank">ISU 02 · Prioritas Kedua</div>
+        <div class="isu-title">Kurangnya Pemahaman dan Implementasi Standar Metadata pada Kegiatan Statistik Sektoral</div>
+        <div class="isu-body">Banyak data tersedia tanpa informasi variabel, indikator, dan definisi operasional yang jelas. Belum dilakukan pemutakhiran metadata secara berkala.</div>
+        <div class="isu-tag">→ Ambiguitas data, rendahnya kualitas statistik, kepercayaan publik menurun.</div>
+      </div>
+      <!-- EDIT: ISU 3 -->
+      <div class="isu-card r3">
+        <div class="isu-rank">ISU 03 · Prioritas Ketiga</div>
+        <div class="isu-title">Belum Terpenuhinya Standar Visualisasi & Diseminasi Data yang Interaktif bagi Pengguna</div>
+        <div class="isu-body">Publikasi hasil statistik masih tabel statis dan dokumen fisik. Tidak ada dashboard infografis atau peta tematik interaktif yang memudahkan pemahaman publik.</div>
+        <div class="isu-tag">→ Rendahnya pemanfaatan data dalam pengambilan kebijakan.</div>
+      </div>
+    </div>
+
+    <!-- Tabel APKL -->
+    <div style="margin-top:8px;font-family:'Space Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;">
+      // Analisis APKL — Aktual · Problematik · Khalayak · Layak
+    </div>
+    <table class="apkl-table">
+      <thead>
+        <tr>
+          <th style="width:44%">Identifikasi Isu</th>
+          <th style="text-align:center">A</th>
+          <th style="text-align:center">P</th>
+          <th style="text-align:center">K</th>
+          <th style="text-align:center">L</th>
+          <th style="text-align:center">Total</th>
+          <th style="text-align:center">Rank</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- EDIT: Nilai APKL -->
+        <tr>
+          <td style="color:var(--text);font-weight:600;">Integrasi & Aksesibilitas Data Sektoral</td>
+          <td class="sc sc-top">5</td><td class="sc sc-top">5</td>
+          <td class="sc sc-top">5</td><td class="sc sc-top">4</td>
+          <td style="font-family:'Space Mono',monospace;font-weight:700;color:var(--cyan)">19</td>
+          <td style="text-align:center"><span class="rank-pip rp1">I</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--text2)">Standar Metadata Data Sektoral</td>
+          <td class="sc sc-lo">4</td><td class="sc sc-lo">4</td>
+          <td class="sc sc-lo">3</td><td class="sc sc-lo">5</td>
+          <td style="font-family:'Space Mono',monospace;font-weight:700;color:var(--text2)">16</td>
+          <td style="text-align:center"><span class="rank-pip rp2">II</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--text2)">Visualisasi & Diseminasi Interaktif</td>
+          <td class="sc sc-lo">3</td><td class="sc sc-lo">2</td>
+          <td class="sc sc-lo">4</td><td class="sc sc-lo">3</td>
+          <td style="font-family:'Space Mono',monospace;font-weight:700;color:var(--text2)">12</td>
+          <td style="text-align:center"><span class="rank-pip rp3">III</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Core Isu Box -->
+    <div class="core-box" style="margin-top:40px;">
+      <!-- EDIT: Rumusan core isu -->
+      <div class="core-text">
+        "Belum optimalnya <span>integrasi dan aksesibilitas</span> data sektoral<br>
+        melalui Portal Satu Data Sigi sebagai wadah tunggal<br>
+        informasi pembangunan di Kabupaten Sigi."
+      </div>
+    </div>
+
+    <!-- Fishbone -->
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;">
+      // Analisis Fishbone — Akar Penyebab Masalah
+    </div>
+    <div class="fishbone-grid">
+      <!-- EDIT: 4 akar masalah -->
+      <div class="fb-card"><div class="fb-label">MACHINE</div><div class="fb-body">Belum tersedianya portal terpusat sebagai wadah digital untuk mengelola dan menyajikan data sektoral secara sistematis.</div></div>
+      <div class="fb-card"><div class="fb-label">MATERIAL</div><div class="fb-body">Format data dari OPD tidak seragam dan belum memiliki metadata standar, menyulitkan sinkronisasi data antar-instansi.</div></div>
+      <div class="fb-card"><div class="fb-label">METHOD</div><div class="fb-body">Prosedur pengumpulan data masih manual dan terfragmentasi (Google Drive) sehingga tidak memiliki alur integrasi yang baku.</div></div>
+      <div class="fb-card"><div class="fb-label">MAN</div><div class="fb-body">Rendahnya kapasitas teknis pengelola data dalam melakukan transformasi raw data menjadi dataset mikro yang terstandar.</div></div>
+    </div>
+
+    <!-- USG -->
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:.18em;text-transform:uppercase;margin:32px 0 14px;">
+      // Analisis USG — Urgency · Seriousness · Growth
+    </div>
+    <div class="usg-row">
+      <!-- EDIT: Nilai USG -->
+      <div class="usg-card">
+        <div class="usg-val" style="color:var(--cyan)">14</div>
+        <div class="usg-label">Belum Tersedianya Portal Satu Data Sigi</div>
+        <div class="usg-score">U:4 · S:5 · G:5 → Rank I</div>
+      </div>
+      <div class="usg-card">
+        <div class="usg-val" style="color:var(--text2);font-size:42px">12</div>
+        <div class="usg-label">Tata Kelola Pengumpulan Data Masih Manual</div>
+        <div class="usg-score">U:5 · S:3 · G:4 → Rank II</div>
+      </div>
+      <div class="usg-card">
+        <div class="usg-val" style="color:var(--text3);font-size:42px">10</div>
+        <div class="usg-label">Kurangnya Literasi Digital Staf Pengelola</div>
+        <div class="usg-score">U:3 · S:4 · G:3 → Rank III</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!-- ║  GAGASAN KREATIF                     ║ -->
+<!-- ╚══════════════════════════════════════╝ -->
+<section id="gagasan">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag tag-gold">04</span>
+      <span class="sec-title">GAGASAN KREATIF</span>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="gagasan-hero">
+      <div>
+        <!-- EDIT: Judul gagasan -->
+        <div class="gagasan-title">PEMBANGUNAN PROTOTIPE PORTAL<br>"SATU DATA SIGI" BERBASIS DIGITAL</div>
+        <!-- EDIT: Deskripsi gagasan -->
+        <div class="gagasan-body">Blueprint integrasi dan diseminasi data sektoral Kabupaten Sigi yang memuat struktur basis data terintegrasi, standar metadata, dan dashboard visualisasi interaktif — sebagai model fungsional yang dapat ditindaklanjuti menjadi portal permanen berskala kabupaten penuh. Gagasan ini erat kaitannya dengan Manajemen ASN dan Smart ASN.</div>
+      </div>
+      <div class="gagasan-icon">
+        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="4"/><path d="M2 12c0 4.4 4.5 8 10 8s10-3.6 10-8"/><line x1="12" y1="2" x2="12" y2="22"/></svg>
+      </div>
+    </div>
+
+    <!-- 6 Fitur portal -->
+    <div class="features-grid">
+      <!-- EDIT: Fitur-fitur portal (nama & deskripsi) -->
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
+        <div class="feat-name">Statistik Sektoral</div>
+        <div class="feat-body">Basis data terintegrasi dari seluruh OPD. Satu wadah untuk semua dataset prioritas dengan format dan standar seragam.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        <div class="feat-name">Dashboard Visualisasi</div>
+        <div class="feat-body">Peta tematik, infografis, dan grafik dinamis yang memudahkan pemahaman tren data pembangunan daerah.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+        <div class="feat-name">Validasi E-Walidata</div>
+        <div class="feat-body">Mekanisme verifikasi, validasi metadata sesuai kaidah Satu Data Indonesia yang terintegrasi dalam sistem.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="feat-name">Metadata Standar</div>
+        <div class="feat-body">Pengelolaan metadata indikator, variabel, definisi operasional, dan metodologi untuk setiap dataset.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
+        <div class="feat-name">Integrasi Data</div>
+        <div class="feat-body">Form digital terproteksi dengan validasi otomatis. Raw data dari berbagai sumber diintegrasikan ke satu basis data mikro.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+        <div class="feat-name">Diseminasi Publik</div>
+        <div class="feat-body">Katalog produk diseminasi digital: infografis, publikasi, dan akses data terbuka bagi masyarakat.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!-- ║  PORTAL SHOWCASE                     ║ -->
+<!-- ╚══════════════════════════════════════╝ -->
+<div class="portal-band" id="portal">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag tag-green">05</span>
+      <span class="sec-title">PORTAL SATU DATA SIGI</span>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="portal-layout">
+      <div>
+        <div class="portal-url-row">
+          <div class="portal-dot"></div>
+          <!-- EDIT: URL portal -->
+          <div class="portal-url-text">data.sigikab.go.id</div>
+        </div>
+        <!-- EDIT: Deskripsi portal -->
+        <div class="portal-desc">
+          Portal Satu Data Sigi kini telah beroperasi dan dapat diakses secara publik. Dibangun selama masa habituasi sebagai model fungsional (proof of concept) yang siap dikembangkan menjadi sistem permanen berskala kabupaten penuh.
+        </div>
+        <div class="portal-tags">
+          <!-- EDIT: Fitur-fitur yang tersedia di portal -->
+          <span class="portal-tag">Statistik Sektoral</span>
+          <span class="portal-tag">Infografis</span>
+          <span class="portal-tag">Publikasi</span>
+          <span class="portal-tag">Integrasi Data</span>
+          <span class="portal-tag">E-Walidata</span>
+          <span class="portal-tag">Open Access</span>
+        </div>
+      </div>
+
+      <!-- EDIT FOTO PORTAL: Grid foto tampilan portal -->
+      <div class="portal-photo-grid">
+        <!--
+          Cara menambah foto portal:
+          Ganti bagian .photo-box dengan:
+          <div style="height:160px;overflow:hidden;">
+            <img src="FOTO_PORTAL_1.jpg" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+        -->
+        <div class="photo-box" style="height:160px;">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <div style="height:160px;overflow:hidden;">
+            <img src="FOTO_PORTAL_1.jpg" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+        </div>
+        <div class="photo-box" style="height:160px;">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <img src="FOTO_PORTAL_2.jpg" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="photo-box wide" style="height:200px;">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <img src="FOTO_PORTAL_3.jpg" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!-- ║  BAB IV — KEGIATAN AKTUALISASI      ║ -->
+<!-- ╚══════════════════════════════════════╝ -->
+<section id="kegiatan">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag tag-cyan">06</span>
+      <span class="sec-title">RANCANGAN KEGIATAN</span>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="keg-list">
+
+      <!-- ─── KEGIATAN 1 ─── -->
+      <!-- EDIT: Isi detail setiap kegiatan -->
+      <div class="keg-item">
+        <div class="keg-num">1</div>
+        <div class="keg-content">
+          <div class="keg-title">Persiapan dan Konsultasi Rencana Pembangunan Prototipe</div>
+          <div class="keg-date">// 09 – 10 Maret 2026</div>
+          <div class="keg-body">Membuat telaahan staf mengenai urgensi prototipe portal, konsultasi dengan pimpinan/mentor, dan memperoleh persetujuan pelaksanaan aktualisasi.</div>
+          <div class="keg-chips">
+            <span class="keg-chip">Telaahan Staf</span>
+            <span class="keg-chip">Konsultasi Mentor</span>
+            <span class="keg-chip">Lembar Persetujuan</span>
+          </div>
+          <div class="keg-nilai">
+            <span class="nilai-tag">Akuntabel</span>
+            <span class="nilai-tag">Harmonis</span>
+            <span class="nilai-tag">Kolaboratif</span>
+            <span class="nilai-tag">Loyal</span>
+          </div>
+          <!-- EDIT FOTO: Foto dokumentasi kegiatan 1 -->
+          <div class="keg-docs">
+            <div class="photo-box keg-doc-photo">
+              <svg class="ph-icon" style="width:20px;height:180px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <img src="foto_konsultasi.jpg" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="photo-box keg-doc-photo">
+              <svg class="ph-icon" style="width:20px;height:180px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+               <img src="foto_persetujuan.jpg" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── KEGIATAN 2 ─── -->
+      <div class="keg-item">
+        <div class="keg-num">2</div>
+        <div class="keg-content">
+          <div class="keg-title">Identifikasi Data Sektoral Prioritas dan Perancangan Struktur Database</div>
+          <div class="keg-date">// 09 – 15 Maret 2026</div>
+          <div class="keg-body">Memetakan daftar data sektoral prioritas dari OPD, merancang struktur tabel dan skema integrasi, serta menyusun instrumen pengumpulan data digital.</div>
+          <div class="keg-chips">
+            <span class="keg-chip">Matriks Data Prioritas</span>
+            <span class="keg-chip">Blueprint Database</span>
+            <span class="keg-chip">Form Digital</span>
+          </div>
+          <div class="keg-nilai">
+            <span class="nilai-tag">Akuntabel</span>
+            <span class="nilai-tag">Kompeten</span>
+            <span class="nilai-tag">Berorientasi Pelayanan</span>
+          </div>
+          <div class="keg-docs">
+            <div class="photo-box keg-doc-photo">
+              <svg class="ph-icon" style="width:20px;height:150px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <img src="data_excel.jpg" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="photo-box keg-doc-photo">
+              <svg class="ph-icon" style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <img src="struktur_database.jpg" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── KEGIATAN 3 ─── -->
+      <div class="keg-item">
+        <div class="keg-num">3</div>
+        <div class="keg-content">
+          <div class="keg-title">Pembangunan Prototipe Portal dan Dashboard Visualisasi Interaktif</div>
+          <div class="keg-date">// 16 – 29 Maret 2026</div>
+          <div class="keg-body">Membangun basis data terintegrasi menggunakan platform digital, mengolah data mikro menjadi visualisasi (grafik/peta), dan mengintegrasikan metadata pada setiap indikator.</div>
+          <div class="keg-chips">
+            <span class="keg-chip">Basis Data Digital</span>
+            <span class="keg-chip">Prototype Dashboard</span>
+            <span class="keg-chip">Dokumen Metadata</span>
+          </div>
+          <div class="keg-nilai">
+            <span class="nilai-tag">Adaptif</span>
+            <span class="nilai-tag">Kompeten</span>
+            <span class="nilai-tag">Akuntabel</span>
+          </div>
+          <div class="keg-docs">
+            <div class="photo-box keg-doc-photo">
+              <svg class="ph-icon" style="width:20px;height:180px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <img src="pembangunan_portal.jpg" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="photo-box keg-doc-photo">
+              <svg class="ph-icon" style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <img src="FOTO_PORTAL_3.jpg" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── KEGIATAN 4 ─── -->
+      <div class="keg-item">
+        <div class="keg-num">4</div>
+        <div class="keg-content">
+          <div class="keg-title">Uji Coba Fungsionalitas Portal dan Validasi oleh E-Walidata</div>
+          <div class="keg-date">// 30 Maret – 12 April 2026</div>
+          <div class="keg-body">Simulasi entri data dan penarikan laporan, validasi kualitas data bersama tim E-Walidata, dan publikasi akses prototipe terbatas untuk mendapat masukan pimpinan.</div>
+          <div class="keg-chips">
+            <span class="keg-chip">Laporan Uji Coba</span>
+            <span class="keg-chip">Berita Acara Validasi</span>
+            <span class="keg-chip">Akses Terbatas</span>
+          </div>
+          <div class="keg-nilai">
+            <span class="nilai-tag">Kompeten</span>
+            <span class="nilai-tag">Kolaboratif</span>
+            <span class="nilai-tag">Berorientasi Pelayanan</span>
+          </div>
+          <div class="keg-docs">
+            <div class="photo-box keg-doc-photo">
+              <svg class="ph-icon" style="width:20px;height:200px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <img src="uji_coba.jpg" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="photo-box keg-doc-photo">
+              <svg class="ph-icon" style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <img src="validasi_walidata.jpg" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── KEGIATAN 5 ───
+      <div class="keg-item">
+        <div class="keg-num">5</div>
+        <div class="keg-content">
+          <div class="keg-title">Sosialisasi dan Penyusunan Rekomendasi Tindak Lanjut</div>
+          <div class="keg-date">// 13 – 26 April 2026</div>
+          <div class="keg-body">Presentasi prototipe kepada pimpinan dan rekan sejawat, pengumpulan umpan balik, serta penyusunan Dokumen Rekomendasi Teknis pembangunan portal permanen.</div>
+          <div class="keg-chips">
+            <span class="keg-chip">Dokumentasi Sosialisasi</span>
+            <span class="keg-chip">Lembar Umpan Balik</span>
+            <span class="keg-chip">Rekomendasi Teknis</span>
+          </div>
+          <div class="keg-nilai">
+            <span class="nilai-tag">Akuntabel</span>
+            <span class="nilai-tag">Adaptif</span>
+            <span class="nilai-tag">Berorientasi Pelayanan</span>
+          </div>
+          <div class="keg-docs">
+            <div class="photo-box keg-doc-photo">
+              <svg class="ph-icon" style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <img src="sosialisasi.jpg" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="photo-box keg-doc-photo">
+              <svg class="ph-icon" style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span class="ph-label">Foto penyerahan rekomendasi</span>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+    </div><!-- end keg-list -->
+
+    <!-- Timeline / Gantt -->
+    <div style="margin-top:48px;font-family:'Space Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;">
+      // Jadwal Pelaksanaan — Maret – April 2026
+    </div>
+    <div class="gantt-wrap">
+      <div class="gantt">
+        <div class="gantt-header">
+          <div class="gantt-header-blank"></div>
+          <div class="gantt-months">
+            <div class="gantt-month">Maret 2026</div>
+            <div class="gantt-month">April 2026</div>
+          </div>
+        </div>
+        <div class="gantt-weeks-row">
+          <div class="gantt-wlabel" style="font-family:'Space Mono',monospace;font-size:9px;color:var(--text3);">Kegiatan</div>
+          <div class="gantt-week">M1</div><div class="gantt-week">M2</div>
+          <div class="gantt-week">M3</div><div class="gantt-week">M4</div>
+          <div class="gantt-week">M1</div><div class="gantt-week">M2</div>
+          <div class="gantt-week">M3</div><div class="gantt-week">M4</div>
+        </div>
+        <!-- EDIT: Sesuaikan span kolom gantt (grid-column) dengan jadwal nyata -->
+        <div class="gantt-row-wrap">
+          <div class="gantt-row-label">1 — Persiapan</div>
+          <div class="gantt-bar-cell" style="grid-column:2/4"><div class="gbar k1"></div></div>
+          <div class="gantt-col"></div><div class="gantt-col"></div><div class="gantt-col"></div><div class="gantt-col"></div><div class="gantt-col"></div><div class="gantt-col"></div>
+        </div>
+        <div class="gantt-row-wrap">
+          <div class="gantt-row-label">2 — Identifikasi</div>
+          <div class="gantt-bar-cell" style="grid-column:2/5"><div class="gbar k2"></div></div>
+          <div class="gantt-col"></div><div class="gantt-col"></div><div class="gantt-col"></div><div class="gantt-col"></div><div class="gantt-col"></div>
+        </div>
+        <div class="gantt-row-wrap">
+          <div class="gantt-row-label">3 — Pembangunan</div>
+          <div class="gantt-bar-cell" style="grid-column:4/7"><div class="gbar k3"></div></div>
+          <div class="gantt-col"></div><div class="gantt-col"></div><div class="gantt-col"></div><div class="gantt-col"></div>
+        </div>
+        <div class="gantt-row-wrap">
+          <div class="gantt-row-label">4 — Uji Coba</div>
+          <div class="gantt-bar-cell" style="grid-column:6/9"><div class="gbar k4"></div></div>
+          <div class="gantt-col"></div><div class="gantt-col"></div>
+        </div>
+        <div class="gantt-row-wrap">
+          <div class="gantt-row-label">5 — Sosialisasi</div>
+          <div class="gantt-bar-cell" style="grid-column:8/10"><div class="gbar k5"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!-- ║  GALERI DOKUMENTASI                  ║ -->
+<!-- ╚══════════════════════════════════════╝ -->
+<section id="dokumentasi">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag tag-teal">07</span>
+      <span class="sec-title">DOKUMENTASI KEGIATAN</span>
+      <div class="sec-line"></div>
+    </div>
+
+    <!--
+      EDIT GALERI FOTO:
+      Ada 6 slot foto. Cara menambah foto nyata:
+      Hapus <div class="photo-box ..."> dan ganti dengan:
+      <img src="NAMA_FILE.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+
+      Layout: 3 kolom. Ada yang tall (tinggi), wide (lebar 2 kolom), normal
+    -->
+    <div class="gallery-grid">
+
+      <div class="gallery-item tall">
+        <div class="photo-box" style="height:90%;">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <img src="foto_konsultasi.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <!-- EDIT: Keterangan foto -->
+        <div class="gallery-caption">Konsultasi dengan mentor</div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="photo-box" style="height:200px;">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <img src="data_excel.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="gallery-caption">Identifikasi data OPD</div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="photo-box" style="height:200px;">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <img src="pembangunan_portal.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="gallery-caption">Pembangunan prototipe portal</div>
+      </div>
+
+      <div class="gallery-item wide">
+        <div class="photo-box" style="height:200px;">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <img src="validasi_ewalidata_lebar.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="gallery-caption">Uji coba & validasi E-Walidata</div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="photo-box" style="height:200px;">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <img src="uji_coba.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="gallery-caption">Presentasi kepada pimpinan</div>
+      </div>
+
+    </div>
+
+    <!-- Foto portal tambahan -->
+    <div style="margin-top:40px;font-family:'Space Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;">
+      // Dokumentasi Portal — data.sigikab.go.id
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <div class="photo-box" style="height:180px;">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <img src="FOTO_PORTAL_1.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="gallery-caption">Tampilan beranda</div>
+      </div>
+      <div class="gallery-item">
+        <div class="photo-box" style="height:180px;">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <img src="FOTO_PORTAL_2.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="gallery-caption">Menu statistik sektoral</div>
+      </div>
+      <div class="gallery-item">
+        <div class="photo-box" style="height:180px;">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <img src="FOTO_PORTAL_3.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="gallery-caption">Menu infografis & diseminasi</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!-- ║  BAB V — KESIMPULAN & REKOMENDASI   ║ -->
+<!-- ╚══════════════════════════════════════╝ -->
+<section id="penutup">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag tag-green">08</span>
+      <span class="sec-title">KESIMPULAN & REKOMENDASI</span>
+      <div class="sec-line"></div>
+    </div>
+
+    <!-- KESIMPULAN -->
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px;">// A. Kesimpulan</div>
+    <div class="ks-grid">
+      <!-- EDIT: Isi poin kesimpulan -->
+      <div class="ks-card full">
+        <div class="ks-num">KS — 01</div>
+        <div class="ks-title">Prototipe Portal Satu Data Sigi Berhasil Dibangun dan Berfungsi</div>
+        <div class="ks-body">Portal yang dapat diakses di <a href="https://www.data.sigikab.go.id" target="_blank">data.sigikab.go.id</a> telah berhasil dibangun sebagai model fungsional (proof of concept) dengan fitur Statistik Sektoral, Diseminasi, Integrasi Data, dan dashboard ringkasan. Ini adalah langkah konkret pertama mewujudkan Satu Data Kabupaten Sigi sesuai amanat Perpres No. 39/2019.</div>
+      </div>
+      <div class="ks-card">
+        <div class="ks-num">KS — 02</div>
+        <div class="ks-title">Isu Integrasi & Aksesibilitas Data Sektoral Tertangani</div>
+        <div class="ks-body">Metode konvensional bertransisi ke sistem terstruktur. Satu pintu akses terbuka bagi pimpinan, OPD, dan masyarakat umum untuk mendapatkan data statistik yang akurat.</div>
+      </div>
+      <div class="ks-card">
+        <div class="ks-num">KS — 03</div>
+        <div class="ks-title">Fungsi E-Walidata Teroptimalisasi dalam Sistem Digital</div>
+        <div class="ks-body">Verifikasi, validasi, dan pengelolaan metadata kini dijalankan lebih sistematis dan akuntabel melalui mekanisme yang terintegrasi dalam portal.</div>
+      </div>
+      <div class="ks-card">
+        <div class="ks-num">KS — 04</div>
+        <div class="ks-title">Nilai-Nilai BerAKHLAK Terimplementasi Konsisten</div>
+        <div class="ks-body">Ketujuh nilai BerAKHLAK tercermin di seluruh tahapan — dari orientasi pelayanan, akuntabilitas data, kompetensi teknis, hingga kolaborasi lintas OPD dan adaptasi digital.</div>
+      </div>
+      <div class="ks-card">
+        <div class="ks-num">KS — 05</div>
+        <div class="ks-title">Blueprint Teknis Tersedia untuk Portal Permanen</div>
+        <div class="ks-body">Dokumen Rekomendasi Teknis tersedia sebagai cetak biru bagi Pemkab Sigi untuk mengembangkan portal menjadi sistem permanen berskala kabupaten penuh.</div>
+      </div>
+    </div>
+
+    <!-- REKOMENDASI -->
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:.18em;text-transform:uppercase;margin:40px 0 16px;">// B. Rekomendasi</div>
+    <div class="rekom-grid">
+      <!-- EDIT: Isi poin rekomendasi -->
+      <div class="rekom-box">
+        <div class="rekom-header">
+          <div class="rekom-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div><div class="rekom-to">Pemerintah Daerah Kabupaten Sigi</div><div class="rekom-sub">// Regulasi & Anggaran</div></div>
+        </div>
+        <ul class="rekom-ul">
+          <li>Tindaklanjuti prototipe menjadi sistem permanen dengan infrastruktur server, anggaran berkelanjutan, dan Peraturan Bupati.</li>
+          <li>Wajibkan seluruh OPD menyetorkan data sektoral secara berkala disertai metadata lengkap.</li>
+          <li>Alokasikan anggaran APBD untuk pengembangan portal dan peningkatan SDM pengelola data.</li>
+        </ul>
+      </div>
+      <div class="rekom-box">
+        <div class="rekom-header">
+          <div class="rekom-ico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <div><div class="rekom-to">Dinas Komunikasi dan Informatika</div><div class="rekom-sub">// Pengembangan Sistem</div></div>
+        </div>
+        <ul class="rekom-ul">
+          <li>Tetapkan SOP baku verifikasi, validasi, dan penerbitan data oleh E-Walidata.</li>
+          <li>Kembangkan fitur lanjutan: peta tematik, open API, unduh multi-format, notifikasi otomatis.</li>
+          <li>Selenggarakan bimbingan teknis berkala bagi operator data seluruh OPD.</li>
+        </ul>
+      </div>
+      <div class="rekom-box">
+        <div class="rekom-header">
+          <div class="rekom-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20"/></svg></div>
+          <div><div class="rekom-to">Seluruh OPD Produsen Data</div><div class="rekom-sub">// Komitmen Penyetoran</div></div>
+        </div>
+        <ul class="rekom-ul">
+          <li>Aktif dan rutin menyetorkan data sektoral sesuai jadwal dengan metadata lengkap (definisi, sumber, metodologi, periode).</li>
+          <li>Tunjuk operator data kompeten sebagai liaison dengan tim E-Walidata Diskominfo.</li>
+        </ul>
+      </div>
+      <div class="rekom-box">
+        <div class="rekom-header">
+          <div class="rekom-ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><div class="rekom-to">Pelaksana Aktualisasi Berikutnya</div><div class="rekom-sub">// Pengembangan Lanjutan</div></div>
+        </div>
+        <ul class="rekom-ul">
+          <li>Kembangkan modul analitik lanjutan dan integrasi dengan SIPD serta platform data nasional.</li>
+          <li>Monitoring berkala: pengguna aktif, frekuensi pembaruan, kepuasan pengguna untuk perbaikan berkelanjutan.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Closing statement -->
+    <div class="closing-box">
+      <!-- EDIT: Kutipan penutup -->
+      <div class="closing-quote">
+        Dengan telah beroperasinya <span>Portal Satu Data Sigi</span> di data.sigikab.go.id,<br>
+        langkah awal transformasi digital tata kelola data Kabupaten Sigi <span>telah dimulai.</span>
+      </div>
+      <p class="closing-body">
+        Keberhasilan portal ini bukan sekadar capaian aktualisasi — melainkan kontribusi nyata bagi terwujudnya pemerintahan yang <strong style="color:var(--text)">transparan, inovatif, dan berbasis data</strong> di Kabupaten Sigi. Semangat inovasi dan kolaborasi yang terbangun selama masa habituasi diharapkan terus dipelihara demi kemajuan pelayanan publik dan kesejahteraan masyarakat Kabupaten Sigi.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ─── FOOTER ─── -->
+<div class="wrap">
+  <footer>
+    <!-- EDIT: Keterangan footer -->
+    <div class="footer-l">Rancangan Aktualisasi CPNS Gol. III · Angkatan VIII · Balai Besar APDN IV Kemendagri · 2026</div>
+    <div class="footer-r">Moh. Batara, S.Stat · data.sigikab.go.id</div>
+  </footer>
+</div>
+
+</body>
+</html>
