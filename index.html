@@ -319,7 +319,6 @@ section + section { border-top: 1px solid rgba(0,194,255,.06); }
 .ir-label { font-size: 11px; color: var(--text3); }
 .ir-val { font-size: 12px; color: var(--text); font-weight: 500; text-align: right; max-width: 55%; }
 
-.peserta-side {}
 .peserta-card {
   background: var(--card); border: 1px solid var(--border);
   overflow: hidden; margin-bottom: 16px;
@@ -688,6 +687,215 @@ footer {
   .cover-bg-num { display: none; }
   .gagasan-hero { grid-template-columns: 1fr; }
 }
+
+/* Mobile menu toggle */
+.nav-toggle {
+  display: none;
+  width: 28px;
+  height: 28px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--cyan);
+  transition: all 0.3s;
+}
+.nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+@media (max-width: 780px) {
+  .wrap { padding: 0 16px; }
+  nav { padding: 0 16px; height: 52px; }
+  .nav-brand { font-size: 10px; }
+  .nav-menu { 
+    position: fixed; top: 52px; left: 0; right: 0;
+    background: rgba(4,9,15,.98);
+    backdrop-filter: blur(16px);
+    flex-direction: column; gap: 0;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+    z-index: 998;
+  }
+  .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .nav-menu a {
+    padding: 12px 16px;
+    font-size: 11px;
+    border-bottom: 1px solid rgba(0,194,255,0.05);
+  }
+  .nav-menu a:last-child { border-bottom: none; }
+  .nav-toggle { display: flex; }
+
+  #cover { grid-template-columns: 1fr; min-height: auto; }
+  .cover-right { height: 300px; order: -1; border-left: none; border-bottom: 1px solid var(--border); }
+  .cover-left { padding: 80px 16px 40px; }
+  .cover-title { font-size: clamp(32px, 10vw, 48px); margin-bottom: 20px; }
+  .cover-desc { font-size: 13px; max-width: 100%; margin-bottom: 28px; }
+  .cover-eyebrow { font-size: 9px; letter-spacing: 0.2em; margin-bottom: 20px; }
+  .cover-eyebrow::before { width: 20px; }
+  .cover-meta-grid { max-width: 100%; grid-template-columns: 1fr; }
+  .cover-meta-cell { padding: 10px 12px; }
+  .cmc-label { font-size: 8px; }
+  .cmc-val { font-size: 12px; }
+  .cover-photo-overlay { padding: 16px; }
+  .cover-photo-name { font-size: 16px; }
+  .cover-photo-title { font-size: 8px; }
+
+  section { padding: 56px 0; }
+  .sec-head { margin-bottom: 28px; gap: 12px; }
+  .sec-title { font-size: clamp(22px, 6vw, 32px); }
+
+  .lb-layout, .profil-layout, .isu-grid, .features-grid,
+  .ks-grid, .rekom-grid, .portal-layout { grid-template-columns: 1fr; gap: 16px; }
+
+  .lb-main { padding: 24px; }
+  .lb-main p { font-size: 13px; }
+  .reg-badges { margin-top: 16px; }
+  .reg-badge { font-size: 8px; padding: 4px 8px; }
+
+  .stat-strip { grid-template-columns: 1fr 1fr; margin-top: 24px; }
+  .stat-cell { padding: 16px 12px; }
+  .stat-val { font-size: 32px; }
+  .stat-lbl { font-size: 10px; }
+
+  .profil-layout { gap: 16px; }
+  .inst-card { padding: 20px; }
+  .inst-logo-box { width: 48px; height: 48px; font-size: 22px; margin-bottom: 12px; }
+  .inst-name { font-size: 16px; }
+  .inst-sub { font-size: 11px; margin-bottom: 16px; }
+  .inst-row { padding: 6px 0; }
+  .ir-label { font-size: 10px; }
+  .ir-val { font-size: 11px; max-width: 60%; }
+
+  .peserta-photo-area { height: 220px; }
+  .peserta-photo-overlay { padding: 16px; }
+  .peserta-name { font-size: 14px; }
+  .peserta-title { font-size: 8px; }
+  .peserta-body-card { padding: 16px; }
+  .peserta-bio { font-size: 12px; margin-bottom: 16px; }
+  .nilai-wrap { gap: 4px; }
+  .nilai-chip { font-size: 10px; padding: 3px 8px; }
+
+  .isu-card { padding: 20px; }
+  .isu-rank { font-size: 8px; }
+  .isu-title { font-size: 13px; margin-bottom: 8px; }
+  .isu-body { font-size: 12px; }
+  .isu-tag { font-size: 11px; padding: 6px 10px; }
+
+  /* Tabel APKL - scroll horizontal di mobile */
+  .apkl-table { display: block; overflow-x: auto; white-space: nowrap; font-size: 12px; }
+  .apkl-table th { font-size: 8px; padding: 8px 10px; }
+  .apkl-table td { padding: 10px; font-size: 12px; }
+
+  .core-box { padding: 28px 20px; margin-top: 24px; }
+  .core-box::before { left: 20px; }
+  .core-text { font-size: clamp(16px, 5vw, 22px); }
+  .fishbone-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 24px; }
+  .fb-card { padding: 16px; }
+  .fb-label { font-size: 8px; }
+  .fb-body { font-size: 12px; }
+
+  .usg-row { grid-template-columns: 1fr; gap: 12px; margin-top: 24px; }
+  .usg-card { padding: 20px; }
+  .usg-val { font-size: 40px; }
+  .usg-label { font-size: 12px; }
+  .usg-score { font-size: 10px; }
+
+  .gagasan-hero { grid-template-columns: 1fr; padding: 24px; gap: 20px; }
+  .gagasan-title { font-size: clamp(18px, 5vw, 24px); margin-bottom: 10px; }
+  .gagasan-body { font-size: 13px; }
+  .gagasan-icon { width: 64px; height: 64px; margin: 0 auto; }
+  .gagasan-icon svg { width: 32px; height: 32px; }
+
+  .feat-card { padding: 20px; }
+  .feat-icon { width: 32px; height: 32px; margin-bottom: 10px; }
+  .feat-icon svg { width: 14px; height: 14px; }
+  .feat-name { font-size: 12px; }
+  .feat-body { font-size: 11px; }
+
+  .portal-band { padding: 48px 0; }
+  .portal-url-text { font-size: 16px; }
+  .portal-desc { font-size: 13px; }
+  .portal-tag { font-size: 8px; padding: 4px 10px; }
+  .portal-photo-grid { grid-template-columns: 1fr; gap: 8px; }
+  .portal-photo-grid .photo-box,
+  .portal-photo-grid .photo-box.wide { 
+    height: 160px; 
+    grid-column: span 1; 
+  }
+
+  .keg-item { grid-template-columns: 40px 1fr; }
+  .keg-num { font-size: 20px; padding: 16px 8px; }
+  .keg-content { padding: 16px; }
+  .keg-title { font-size: 13px; }
+  .keg-date { font-size: 8px; }
+  .keg-body { font-size: 12px; }
+  .keg-chip { font-size: 10px; padding: 2px 8px; }
+  .keg-docs { flex-direction: column; }
+  .keg-doc-photo { min-height: 140px; }
+
+  .gantt-wrap { margin-top: 28px; }
+  .gantt { min-width: 600px; }
+
+  .gallery-grid { grid-template-columns: 1fr; gap: 12px; }
+  .gallery-item,
+  .gallery-item.wide { grid-column: span 1; }
+  .gallery-item .photo-box,
+  .gallery-item.tall .photo-box,
+  .gallery-item.wide .photo-box { height: 200px; }
+  .gallery-caption { font-size: 8px; }
+
+  .ks-card { padding: 20px; }
+  .ks-card.full { grid-column: span 1; }
+  .ks-num { font-size: 8px; }
+  .ks-title { font-size: 12px; }
+  .ks-body { font-size: 11px; }
+
+  .rekom-grid { margin-top: 24px; }
+  .rekom-box { padding: 20px; }
+  .rekom-ico { width: 32px; height: 32px; }
+  .rekom-ico svg { width: 14px; height: 14px; }
+  .rekom-to { font-size: 12px; }
+  .rekom-sub { font-size: 8px; }
+  .rekom-ul { gap: 8px; }
+  .rekom-ul li { font-size: 11px; padding-left: 16px; }
+  .rekom-ul li::before { font-size: 8px; }
+
+  .closing-box { margin-top: 36px; padding: 24px; }
+  .closing-quote { font-size: clamp(16px, 4vw, 20px); margin-bottom: 12px; }
+  .closing-body { font-size: 13px; }
+
+  footer { padding: 20px 0; flex-direction: column; text-align: center; gap: 8px; }
+  .footer-l, .footer-r { font-size: 8px; letter-spacing: 0.08em; }
+
+  .cover-bg-num { display: none; }
+}
+
+/* Extra small devices */
+@media (max-width: 380px) {
+  .cover-title { font-size: 28px; }
+  .stat-strip { grid-template-columns: 1fr; }
+  .stat-cell { padding: 12px; }
+  .cover-right { height: 260px; }
+  .peserta-photo-area { height: 180px; }
+}
+
 @media print {
   nav { display: none; }
   .cover-bar { display: none; }
@@ -701,6 +909,11 @@ footer {
 <!-- ╚══════════════════════════════════════╝ -->
 <nav>
   <div class="nav-brand">Satu<span>Data</span>Sigi</div>
+  <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-menu').classList.toggle('active'); this.classList.toggle('active');">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
   <div class="nav-menu">
     <a href="#latar">Latar Belakang</a>
     <a href="#profil">Profil</a>
